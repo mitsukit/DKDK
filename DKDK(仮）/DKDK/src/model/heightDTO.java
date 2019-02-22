@@ -5,6 +5,7 @@ public class heightDTO
 	private int height_id;
 	private String height;
 
+	//height_idのセッターは
 	public int getHeightId()
 	{
 		return this.height_id;
