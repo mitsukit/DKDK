@@ -18,11 +18,12 @@
 </head>
 
 <body>
+
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
 				<div class="card-header">
-					<h3>ニックネーム: ${user.name}</h3>
+					<h3>ニックネーム: ${loginUser.name}</h3>
 					<div class="outter">
 						<img src="MyPhoto.jpg" class="image-circle" />
 					</div>
@@ -32,41 +33,34 @@
 							class="fab fa-twitter-square"></i></span>
 					</div>
 				</div>
-				<div class="card-body">
-					<h4>♪自己紹介♪</h4>
-					<form>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="my_prof"></i></span>
-							</div>
-							${user.userfree}
-						</div>
-
-						<h5>♪基本情報♪</h5>
-
-						<div class="data" style="white-space:pre-wrap;">
 
 
+<div class="data" style="white-space:pre-wrap;">
 
-年齢 ${user.age}
 
-居住地   ${user.area}
+				<h4>♪自己紹介♪</h4>
+		${loginUser.userfree}
 
-年収   ${user.income}
+				<h4>♪基本情報♪</h4>
+		年齢 ${loginUser.age}
 
-身長   ${user.height}
+		居住地   ${loginUser.area}
 
-体型   ${user.body}
+		年収   ${loginUser.income}
 
-学歴 ${user.school}
+		身長   ${loginUser.height}
 
-職種  ${user.job}
+		体型   ${loginUser.body}
 
-休日   ${user.holiday}
+		学歴 ${loginUser.school}
 
-タバコは吸いますか   ${user.cigar}
+		職種  ${loginUser.job}
 
-子供はほしいですか  ${user.child}
+		休日   ${loginUser.holiday}
+
+		タバコは吸いますか   ${loginUser.cigar}
+
+		子供はほしいですか  ${loginUser.child}
 
 
 

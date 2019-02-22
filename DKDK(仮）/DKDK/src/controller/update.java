@@ -16,18 +16,16 @@ import model.userDTO;
 
 
 @WebServlet(name="login", urlPatterns={"/login"})
-public class login extends HttpServlet {
+public class update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-    public login() {
-        super();
-    }
+
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		userDAO user = new userDAO();
+		userDAO user = new userDAO(null);
 		List<userDTO> userAllList;
 		try {
 			userAllList = user.selectAll();
@@ -49,36 +47,48 @@ public class login extends HttpServlet {
 		 String password = request.getParameter("password");
 
 		 String error = null;
-		 userDTO loginUser;
+		 String dbPass = null;
+		 userDTO user = null;
 
 
 		try {
 
-			userDAO userDao = new userDAO();
-			loginUser = userDao.loginCheck(Integer.parseInt(userId),password);
+			userDAO userDao = new userDAO(null);
+			List<userDTO> userList = userDao.selectById(Integer.parseInt(userId));
 
-				if(loginUser==null) {
-					 error = "ログインに失敗しました。";
-					request.setAttribute(" error", error);
-					request.getRequestDispatcher("login.jsp").forward(request, response);
-					return;
+		if(userList.isEmpty()) {
+			 error = "IDが見つかりません。";
+			request.setAttribute(" error", error);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
 
-				}
 
-					//セッション
-					HttpSession session = request.getSession();
-					session.setAttribute("loginUser",loginUser);
-
-					request.getRequestDispatcher("myPage.jsp").forward(request, response);
-
-					return;
-
+		user = userList.get(0);
+		dbPass = user.getPassword();
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			return;
 		}
 
-	}
+		if(user != null &&password.equals(dbPass)){
+
+			request.setAttribute("userId", userId);
+			request.setAttribute("password", password);
+
+			//セッション
+			HttpSession session = request.getSession();
+			session.setAttribute("user",user);
+
+			request.getRequestDispatcher("sample.jsp").forward(request, response);
+
+			return;
+		}else
+			 error = "値が不正です。";
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
+
 
 }

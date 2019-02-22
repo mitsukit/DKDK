@@ -9,7 +9,7 @@ public class userDTO {
 	private String income;//年収
 	private String school;//学歴
 	private String gender;//性別
-	private int age;//年齢
+	private String age;//年齢
 	private String height;//身長
 	private String body;//体型
 	private String job;//職種
@@ -26,7 +26,7 @@ public class userDTO {
 	}
 
 	public userDTO(int userId,String password,String name,String area,
-					String income,String school,String gender,int age,String height,String body,String job,
+					String income,String school,String gender,String age,String height,String body,String job,
 					String holiday,String cigar,String child,String userfree,int picId) {
 		this.userId = userId;
 		this.password = password;
@@ -35,7 +35,7 @@ public class userDTO {
 		this.setIncome(income);
 		this.school = school;
 		this.gender = gender;
-		this.age = age;
+		this.setAge(age);
 		this.setHeight(height);
 		this.body = body;
 		this.job = job;
@@ -96,18 +96,6 @@ public class userDTO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-
-	public int getAge() {
-		return this.age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-
-
-
 
 	public String getBody() {
 		return this.body;
@@ -190,6 +178,14 @@ public class userDTO {
 
 	public void setHeight(String height) {
 		this.height = height;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
 	}
 
 
