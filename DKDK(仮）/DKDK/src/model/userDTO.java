@@ -1,6 +1,6 @@
 package model;
 
-public class userDTO {
+public class userDTO{
 
 	private int userId;//ユーザid
 	private String password;//パスワード
@@ -16,37 +16,42 @@ public class userDTO {
 	private String holiday;//休日
 	private String cigar;//タバコ
 	private String child;//子供願望
-	private String userfree;//自由記入
 	private int picId;//画像ID
-	private String bloodtype;//血液型
+	private String picName;//画像名
 	private String free;//自由入力
-
-
 	public userDTO() {
 	}
 
+	/*引数に入れたもの(DBから取りだしたデータ）を
+	 * DTOのフィールドにセットしてカプセル化するコンストラクター
+	 * 　｜・DAOにて、loginCheckメソッドとselectByIdメソッドの戻り値として使用｜
+	 * 　｜・マイページとプロフィールページで全情報を表示する際に使用　　　　　　　｜
+	 * 注意：引数に入れる順番を守る
+	 */
 	public userDTO(int userId,String password,String name,String area,
-				   String income,String school,String gender,String age,String height,String body,String job,
-				   String holiday,String cigar,String child,String userfree,int picId) {
+				   String income,String school,String gender,String age,String height,String body,
+				   String job,String holiday,String cigar,String child,int picId,String picName,
+				   String free) {
 		this.userId = userId;
 		this.password = password;
 		this.name = name;
 		this.area = area;
-		this.setIncome(income);
+		this.income = income;
 		this.school = school;
 		this.gender = gender;
-		this.setAge(age);
-		this.setHeight(height);
+		this.age = age;
+		this.height = height;
 		this.body = body;
 		this.job = job;
 		this.holiday = holiday;
 		this.cigar = cigar;
 		this.child = child;
-		this.userfree = userfree;
 		this.picId = picId;
+		this.picName = picName;
+		this.free = free;
 	}
 
-
+	//ゲッター、セッター
 	public int getUserId() {
 		return this.userId;
 	}
@@ -79,7 +84,12 @@ public class userDTO {
 	}
 
 
-
+	public String getIncome() {
+		return income;
+	}
+	public void setIncome(String income) {
+		this.income = income;
+	}
 
 
 	public String getSchool() {
@@ -96,6 +106,23 @@ public class userDTO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+
+	public String getAge() {
+		return this.age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
 
 	public String getBody() {
 		return this.body;
@@ -137,56 +164,27 @@ public class userDTO {
 	}
 
 
-	public String getUserfree() {
-		return this.userfree;
-	}
-	public void setUserfree(String userfree) {
-		this.userfree = userfree;
-	}
-
-
 	public int getPicId() {
 		return this.picId;
 	}
 	public void setPicId(int picId) {
 		this.picId = picId;
 	}
-	public String getBloodtype() {
-		return bloodtype;
+
+
+	public String getPicName() {
+		return picName;
 	}
-	public void setBloodtype(String bloodtype) {
-		this.bloodtype = bloodtype;
+	public void setPicName(String picName) {
+		this.picName = picName;
 	}
+
+
 	public String getFree() {
 		return free;
 	}
 	public void setFree(String free) {
 		this.free = free;
 	}
-
-	public String getIncome() {
-		return income;
-	}
-
-	public void setIncome(String income) {
-		this.income = income;
-	}
-
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
-	}
-
 
 }

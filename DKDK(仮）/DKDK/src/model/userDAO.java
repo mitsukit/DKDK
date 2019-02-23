@@ -39,6 +39,54 @@ public class userDAO {
 		this.con = con;
 	}
 
+	//ログインチェック　userIdとpasswordに基づくユーザー情報を取り出す
+	public userDTO loginCheck(int userId,String password)
+			throws SQLException, ClassNotFoundException, NumberFormatException {
+
+		userDTO userData = null;
+
+		try {
+			con = DBManager.getConnection();
+			String sql = "SELECT * FROM user_table INNER JOIN picture ON user_table.user_id = picture.id "
+					+ "WHERE user_id = ? AND user_pass = ?";
+			this.stmt = con.prepareStatement(sql);
+			stmt.setInt(1, userId);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				userId = rs.getInt("user_id");
+				password = rs.getString("user_pass");
+				String name = rs.getString("user_nickname");
+				String area = rs.getString("user_area");
+				String income = rs.getString("user_income");
+				String school = rs.getString("user_school");
+				String gender = rs.getString("user_gender");
+				String age = rs.getString("user_age");
+				String height = rs.getString("user_height");
+				String body = rs.getString("user_body");
+				String job = rs.getString("user_job");
+				String holiday = rs.getString("user_holiday");
+				String cigar = rs.getString("user_cigar");
+				String child = rs.getString("user_child");
+				int picId = rs.getInt("user_pic");
+				String picName = rs.getString("user_picName");
+				String free = rs.getString("user_free");
+
+				return userData = new userDTO(userId,password,name,area,
+						income,school,gender,age,height,body,job,
+						holiday,cigar,child,picId,picName,free);
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			stmt.close();
+			con.close();
+		}
+		return userData;
+	}
+
 	/**
 	 * ユーザーテーブルの情報を全件取得する
 	 *
@@ -70,7 +118,7 @@ public class userDAO {
 				user.setHoliday(rs.getString("user_holiday"));
 				user.setCigar(rs.getString("user_cigar"));
 				user.setChild(rs.getString("user_child"));
-				user.setUserfree(rs.getString("user_free"));
+				user.setFree(rs.getString("user_free"));
 				user.setPicId(rs.getInt("user_pic"));
 				userAllList.add(user);
 			}
@@ -111,7 +159,7 @@ public class userDAO {
 				user.setHoliday(rs.getString("user_holiday"));
 				user.setCigar(rs.getString("user_cigar"));
 				user.setChild(rs.getString("user_child"));
-				user.setUserfree(rs.getString("user_free"));
+				user.setFree(rs.getString("user_free"));
 				user.setPicId(rs.getInt("user_pic"));
 				userList.add(user);
 			}
@@ -174,7 +222,7 @@ public class userDAO {
 				user.setHoliday(rs.getString("user_holiday"));
 				user.setCigar(rs.getString("user_cigar"));
 				user.setChild(rs.getString("user_child"));
-				user.setUserfree(rs.getString("user_free"));
+				user.setFree(rs.getString("user_free"));
 				user.setPicId(rs.getInt("user_pic"));
 				userList.add(user);
 			}
