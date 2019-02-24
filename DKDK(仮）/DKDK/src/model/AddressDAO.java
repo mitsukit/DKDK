@@ -9,18 +9,18 @@ import java.util.List;
 
 import util.DBManager;
 
-public class addressDAO
+public class AddressDAO
 {
 	/** DBコネクション */
 	public Connection con;
 	/** DBステートメント */
 	PreparedStatement stmt;
 	ResultSet rs;
-	addressDTO dto;
+	AddressDTO dto;
 
-public List<addressDTO> selectById(int addressId) throws SQLException, ClassNotFoundException, NumberFormatException
+public List<AddressDTO> selectById(int addressId) throws SQLException, ClassNotFoundException, NumberFormatException
 	{
-			List<addressDTO> adList = new ArrayList<>();
+			List<AddressDTO> adList = new ArrayList<>();
 			String sql = "SELECT * FROM address_table WHERE address_id = "+ addressId + ";" ;
 
 			try {
@@ -28,7 +28,7 @@ public List<addressDTO> selectById(int addressId) throws SQLException, ClassNotF
 	 			this.stmt = con.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				while (rs.next()) {
-					addressDTO address = new addressDTO();
+					AddressDTO address = new AddressDTO();
 					adList.add(address);
 				}
 			} catch (SQLException e) {
