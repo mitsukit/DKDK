@@ -101,6 +101,10 @@ public class Search extends HttpServlet {
 		
 		//END of  pulldown check
 		
+		//START get data from database with key in all pre-defined String variables
+		
+		
+		
 		request.getRequestDispatcher("SearchResult.jsp").forward(request, response);
 
 

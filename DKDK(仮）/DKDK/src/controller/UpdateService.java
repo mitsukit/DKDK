@@ -8,10 +8,12 @@ import model.userDAO;
 import model.userDTO;
 import util.DBManager;
 
-public class UpdateService extends BaseService {
+public class UpdateService  {
 
-	public UpdateService() throws Exception {
-		super(true);
+	DBManager dbManager;
+	
+	public UpdateService() 
+	{
 	}
 
 	public enum UPDATE_MODE {
@@ -26,10 +28,11 @@ public class UpdateService extends BaseService {
 	 * @throws Exception
 	 */
 	public int registEmployee(userDTO emp, UPDATE_MODE mode) throws Exception {
-		userDAO dao = new userDAO(this.con);
+		
 		int count = -1;
 
 		try {
+			userDAO dao = new userDAO(dbManager.getConnection());
 			if (mode == UPDATE_MODE.UPDATE){
 				// DAO -> List<Object>（DAO#updateを呼び出すため）
 				List<Object> paramList = new ArrayList<>();
@@ -70,12 +73,9 @@ public class UpdateService extends BaseService {
 				if (emp.getChild() !=null) {
 				paramList.add(emp.getChild());
 				}
-				paramList.add(emp.getUserfree());
+				paramList.add(emp.getFree());
 				paramList.add(emp.getPicId());
 
-				if (emp.getBloodtype()!=null) {
-					paramList.add(emp.getBloodtype());
-				}
 
 
 				count = dao.updateMypageDtos(paramList, emp.getUserId());

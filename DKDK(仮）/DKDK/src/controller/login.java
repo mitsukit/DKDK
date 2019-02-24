@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.userDAO;
 import model.userDTO;
+import util.DBManager;
 
 
 @WebServlet(name="login", urlPatterns={"/login"})
@@ -26,10 +27,9 @@ public class login extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		userDAO user = new userDAO();
-		List<userDTO> userAllList;
 		try {
+			userDAO user = new userDAO(DBManager.getConnection());
+			List<userDTO> userAllList;
 			userAllList = user.selectAll();
 			request.setAttribute("userAllList",userAllList);
 			request.getRequestDispatcher("sample.jsp").forward(request, response);
@@ -54,18 +54,18 @@ public class login extends HttpServlet {
 
 		try {
 
-			userDAO userDao = new userDAO();
+			userDAO userDao = new userDAO(DBManager.getConnection());
 			loginUser = userDao.loginCheck(Integer.parseInt(userId),password);
 
 				if(loginUser==null) {
-					 error = "ログインに失敗しました。";
+					 error = "ãƒ­ã‚°ã‚¤ãƒ³ã�«å¤±æ•—ã�—ã�¾ã�—ã�Ÿã€‚";
 					request.setAttribute(" error", error);
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 					return;
 
 				}
 
-					//セッション
+					//ã‚»ãƒƒã‚·ãƒ§ãƒ³
 					HttpSession session = request.getSession();
 					session.setAttribute("loginUser",loginUser);
 

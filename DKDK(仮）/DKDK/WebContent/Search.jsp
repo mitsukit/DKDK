@@ -37,6 +37,7 @@
 							<tr>
 								<th class="myPage">年齢</th>
 								<td><select name="age">
+										<option selected disabled hidden="">年齢を選択</option>
 										<option value="20">20歳</option>
 										<option value="30">30歳</option>
 								</select></td>

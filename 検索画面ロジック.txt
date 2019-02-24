@@ -1,0 +1,19 @@
+Search 
+ー ドロップダウンで選択
+    ー　それぞれの値にはキーが降られており（HTMLの仕様）それに基づいてDBにもそれぞれのドロップダウンごとのテーブルを作成している
+    ー　それぞれのプライマリーキー（なんちゃら＿id）をドロップダウンでの値と同じものを割り振っている
+ー　userDAOにてselectById()メソッドと同じ要領で取得出来た値を全てチェックし、入っているものをサーチし、入ってないものを省く
+    ー　なのでデフォルトで空欄""を割り振っておくかnullにしておくかHTMLの仕様により変動
+    
+    以下stackoverflowより
+    <select>
+  <option value="" selected disabled hidden>Choose here</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+  <option value="4">Four</option>
+  <option value="5">Five</option>
+</select>
+
+↑こんな感じで option value="" selected disabled hidden 　にすることによりデフォルト値に""をセットしユーザが何も選択しない場合はそれを返す事が可能
+
