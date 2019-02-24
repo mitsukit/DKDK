@@ -1,6 +1,6 @@
 package model;
 
-public class addressDTO
+public class AddressDTO
 {
 	private int address_id;
 	private String address;

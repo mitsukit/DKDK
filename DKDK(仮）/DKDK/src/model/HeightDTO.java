@@ -1,14 +1,18 @@
 package model;
 
-public class heightDTO
+public class HeightDTO
 {
 	private int height_id;
 	private String height;
 
-	//height_idのセッターは
+
 	public int getHeightId()
 	{
 		return this.height_id;
+	}
+	public void setHeightId(int height_id)
+	{
+		this.height_id = height_id;
 	}
 
 	public String getHeight()

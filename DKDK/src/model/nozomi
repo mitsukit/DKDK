@@ -19,19 +19,19 @@ public class userDAO {
 
 
 
-	/** DBコネクション */
+	/** DB繧ｳ繝阪け繧ｷ繝ｧ繝ｳ */
 	public Connection con;
-	/** DBステートメント */
+	/** DB繧ｹ繝�繝ｼ繝医Γ繝ｳ繝� */
 	PreparedStatement stmt;
 
-	/** 検索結果 */
+	/** 讀懃ｴ｢邨先棡 */
 	ResultSet rs;
 
 
 	/**
-	 * ユーザーテーブルの情報を全件取得する
+	 * 繝ｦ繝ｼ繧ｶ繝ｼ繝�繝ｼ繝悶Ν縺ｮ諠�蝣ｱ繧貞�ｨ莉ｶ蜿門ｾ励☆繧�
 	 *
-	 * @return 検索結果
+	 * @return 讀懃ｴ｢邨先棡
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
@@ -72,7 +72,7 @@ public class userDAO {
 	}
 
 
-/*	//IDを引数に、一件分検索
+/*	//ID繧貞ｼ墓焚縺ｫ縲∽ｸ莉ｶ蛻�讀懃ｴ｢
 	public userDTO selectById(int userId)
 			throws SQLException, ClassNotFoundException, NumberFormatException {
 
@@ -118,7 +118,7 @@ public class userDAO {
 	}*/
 
 
-	//ログインチェック
+	//繝ｭ繧ｰ繧､繝ｳ繝√ぉ繝�繧ｯ
 		public userDTO loginCheck(int userId,String password)
 				throws SQLException, ClassNotFoundException, NumberFormatException {
 
@@ -170,24 +170,24 @@ public class userDAO {
 
 
 
-	//暗号化メソッド
+	//證怜捷蛹悶Γ繧ｽ繝�繝�
 	 private String password(String password) {
   	   String source = password;
-  	 //ハッシュ生成前にバイト配列に置き換える際のCharset
+  	 //繝上ャ繧ｷ繝･逕滓�仙燕縺ｫ繝舌う繝磯�榊�励↓鄂ｮ縺肴鋤縺医ｋ髫帙�ｮCharset
   	 Charset charset = StandardCharsets.UTF_8;
-  	 //ハッシュアルゴリズム
+  	 //繝上ャ繧ｷ繝･繧｢繝ｫ繧ｴ繝ｪ繧ｺ繝�
   	 String algorithm = "MD5";
 
-  	 //ハッシュ生成処理
+  	 //繝上ャ繧ｷ繝･逕滓�仙�ｦ逅�
   	 byte[] bytes = null;
 		try {
 			bytes = MessageDigest.getInstance(algorithm).digest(source.getBytes(charset));
 		} catch (NoSuchAlgorithmException e) {
-			// TODO 自動生成された catch ブロック
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆ catch 繝悶Ο繝�繧ｯ
 			e.printStackTrace();
 		}
   	 String result = DatatypeConverter.printHexBinary(bytes);
-  	 //標準出力
+  	 //讓呎ｺ門�ｺ蜉�
   	 System.out.println(result);
 
   	 return result;

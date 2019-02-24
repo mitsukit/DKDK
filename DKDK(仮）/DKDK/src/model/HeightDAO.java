@@ -9,26 +9,26 @@ import java.util.List;
 
 import util.DBManager;
 
-public class heightDAO
+public class HeightDAO
 {
 	/** DBコネクション */
 	public Connection con;
 	/** DBステートメント */
 	PreparedStatement stmt;
 	ResultSet rs;
-	heightDTO dto;
+	HeightDTO dto;
 
-public List<heightDTO> selectById(int heightId) throws SQLException, ClassNotFoundException, NumberFormatException
+public List<HeightDTO> selectById(int heightId) throws SQLException, ClassNotFoundException, NumberFormatException
 	{
-			List<heightDTO> heightList = new ArrayList<>();
-			String sql = "SELECT * FROM height_table WHERE address_id = "+ heightId + ";" ;
+			List<HeightDTO> heightList = new ArrayList<>();
+			String sql = "SELECT * FROM height_table WHERE height_id = "+ heightId + ";" ;
 
 			try {
 				con = DBManager.getConnection();
 	 			this.stmt = con.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				while (rs.next()) {
-					dto = new heightDTO();
+					dto = new HeightDTO();
 					heightList.add(dto);
 				}
 			} catch (SQLException e) {
