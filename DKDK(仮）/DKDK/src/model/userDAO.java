@@ -133,35 +133,42 @@ public class userDAO {
 
 
 	//IDを引数に、一件分検索
-
-	public List<userDTO> selectById(int userId)
+	public userDTO selectById(int userId)
 			throws SQLException, ClassNotFoundException, NumberFormatException {
-		List<userDTO> userList = new ArrayList<>();
-		String sql = "SELECT * FROM user_table WHERE user_id = "+ userId + ";" ;
+
+		String sql = "SELECT * FROM user_table INNER JOIN picture ON user_table.user_id = picture.id"
+				+ " WHERE user_id = "+ userId + ";" ;
+		userDTO userData = null;
 
 		try {
 			con = DBManager.getConnection();
 			this.stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			while (rs.next()) {
+			if(rs.next()) {
 				userDTO user = new userDTO();
-				user.setUserId(rs.getInt("user_id"));
-				user.setPassword(rs.getString("user_pass"));
-				user.setName(rs.getString("user_nickname"));
-				user.setArea(rs.getString("user_area"));
-				user.setIncome(rs.getString("user_income"));
-				user.setSchool(rs.getString("user_school"));
-				user.setGender(rs.getString("user_gender"));
-				user.setAge(rs.getString("user_age"));
-				user.setHeight(rs.getString("user_height"));
-				user.setBody(rs.getString("user_body"));
-				user.setJob(rs.getString("user_job"));
-				user.setHoliday(rs.getString("user_holiday"));
-				user.setCigar(rs.getString("user_cigar"));
-				user.setChild(rs.getString("user_child"));
-				user.setFree(rs.getString("user_free"));
-				user.setPicId(rs.getInt("user_pic"));
-				userList.add(user);
+				userId = rs.getInt("user_id");
+				String password = rs.getString("user_pass");
+				String name = rs.getString("user_nickname");
+				String area = rs.getString("user_area");
+				String income = rs.getString("user_income");
+				String school = rs.getString("user_school");
+				String gender = rs.getString("user_gender");
+				String age = rs.getString("user_age");
+				String height = rs.getString("user_height");
+				String body = rs.getString("user_body");
+				String job = rs.getString("user_job");
+				String holiday = rs.getString("user_holiday");
+				String cigar = rs.getString("user_cigar");
+				String child = rs.getString("user_child");
+				int picId = rs.getInt("user_pic");
+				String picName = rs.getString("user_picName");
+				String free = rs.getString("user_free");
+
+				return userData = new userDTO(userId,password,name,area,
+						income,school,gender,age,height,body,job,
+						holiday,cigar,child,picId,picName,free);
+			}else {
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,7 +176,7 @@ public class userDAO {
 			stmt.close();
 			con.close();
 		}
-		return userList;
+		return userData;
 	}
 
 	//IDを引数に、Myページを更新

@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>profile</title>
 	<!--Made with love by Mutiullah Samim -->
 
 	<!--Bootsrap 4 CDN-->
@@ -17,14 +18,13 @@
 </head>
 
 <body>
-
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3>ニックネーム: ${loginUser.name}</h3>
+				<h3>ニックネーム: ${user.name}</h3>
 				<div class="outter">
-					<img src="${loginUser.picName}" class="image-circle" />
+					<img src="${user.picName}" class="image-circle" />
 				</div>
 				<div class="d-flex justify-content-end social_icon">
 					<span><i class="fab fa-facebook-square"></i></span> <span><i
@@ -32,42 +32,53 @@
 						class="fab fa-twitter-square"></i></span>
 				</div>
 			</div>
-
-
-			<div class="data" style="white-space:pre-wrap;">
-
-
+			<div class="card-body">
 				<h4>♪自己紹介♪</h4>
-				${loginUser.free}
+				<form>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="my_prof"></i></span>
+						</div>
+						${user.free}
+					</div>
 
-				<h4>♪基本情報♪</h4>
-				年齢 ${loginUser.age}
+					<h5>♪基本情報♪</h5>
 
-				居住地   ${loginUser.area}
-
-				年収   ${loginUser.income}
-
-				身長   ${loginUser.height}
-
-				体型   ${loginUser.body}
-
-				学歴 ${loginUser.school}
-
-				職種  ${loginUser.job}
-
-				休日   ${loginUser.holiday}
-
-				タバコは吸いますか   ${loginUser.cigar}
-
-				子供はほしいですか  ${loginUser.child}
+					<div class="data" style="white-space:pre-wrap;">
 
 
 
-				<A HREF="logout">ログアウト</a>
+						年齢 ${user.age}
+
+						居住地   ${user.area}
+
+						年収   ${user.income}
+
+						身長   ${user.height}
+
+						体型   ${user.body}
+
+						学歴 ${user.school}
+
+						職種  ${user.job}
+
+						休日   ${user.holiday}
+
+						タバコは吸いますか   ${user.cigar}
+
+						子供はほしいですか  ${user.child}
+
+
+
+						<A HREF="search">戻る</a>
+						<A HREF="logout">ログアウト</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 
 </body>

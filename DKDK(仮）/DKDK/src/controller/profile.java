@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.userDAO;
 import model.userDTO;
+import util.DBManager;
 
 
 @WebServlet(name="profile", urlPatterns={"/profile"})
@@ -34,7 +35,7 @@ public class profile extends HttpServlet {
 
 
 		try {
-			userDAO dao = new userDAO();
+			userDAO dao = new userDAO(DBManager.getConnection());
 			userDTO user;
 			user = dao.selectById(Integer.parseInt(userId));
 			request.setAttribute("user", user);
