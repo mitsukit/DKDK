@@ -145,7 +145,6 @@ public class userDAO {
 			this.stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				userDTO user = new userDTO();
 				userId = rs.getInt("user_id");
 				String password = rs.getString("user_pass");
 				String name = rs.getString("user_nickname");
