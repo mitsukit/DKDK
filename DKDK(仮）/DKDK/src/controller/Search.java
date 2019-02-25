@@ -105,72 +105,7 @@ public class Search extends HttpServlet {
 		pull.put("smoking_id",smokingSelect);
 		pull.put("children_id",childSelect);
 
-		//SQL文作成
-		//StringBuilder使用
-		int index = 1;
-		StringBuilder sql = new StringBuilder();
-		//Initial SQL query
-		sql.append("SELECT * FROM user_table WHERE 'X' = 'X'");
-
-		//TRY-CATCH文　try 開始
-		try {
-		//for each文でHashMap内のkeyを取り出していく
-		for(String key : pull.keySet())
-		{
-			//値がnullで無ければSQL文にappendして足していく
-			if(pull.get(key) != null || pull.get(key) != "")
-			{
-				sql.append("AND " + key + " = ?");
-				//PreparedStatementのsetIntで該当するid番号を設定していく
-				ps.setInt(index, Integer.parseInt(pull.get(key)));
-				//ループするためint型変数indexをインクレメントしていく
-				index++;
-			}
-		}
-
-			//Connection作成
-			Connection con = DBManager.getConnection();
-			//ConnectionのprepareStatement()でsql文をセット、StringBuilderの為 toString()メソッドでStringに変更
-			this.ps = con.prepareStatement(sql.toString());
-			//ResultSet作成
-			ResultSet rs = ps.executeQuery();
-			//<userDTO>型のリストを作成：userSearchList
-			List<userDTO> userSearchList = new ArrayList<userDTO>();
-
-			//該当するプロフィールを全件表示する
-			while(rs.next())
-			{
-				//create list<userDTO>, put in all variables via setter methods in userDTO and run ResultSet.getInt, or getString()methods
-				/*pull.put("age_id",ageSelect);
-		pull.put("address_id", addressSelect);
-		pull.put("income_id",incomeSelect);
-		pull.put("height_id",heightSelect);
-		pull.put("body_id",bodySelect);
-		pull.put("education_id",eduSelect);
-		pull.put("job_id",jobSelect);
-		pull.put("holiday_id",holidaySelect);
-		pull.put("smoking_id",smokingSelect);
-		pull.put("children_id",childSelect);*/
-				AgeDTO age = dto.getAge();
-				AddressDTO address = dto.getAddress();
-				IncomeDTO income  =dto.getIncome();
-				HeightDTO height = dto.getHeight();
-				BodyDTO body = dto.getBody();
-				EducationDTO education = dto.getEducation();
-				JobDTO job = dto.getJob();
-				HolidayDTO holiday = dto.getHoliday();
-				SmokingDTO smoking = dto.getSmoking();
-				ChildrenDTO children = dto.getChildren();
-
-
-
-
-			}
-
-
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		
 
 
 

@@ -206,10 +206,52 @@ public class userDAO {
 	}
 
 	//String age, String address, String income, String height,String body, String education, String job, String holiday, String smoking, String children
-	public List<userDTO> selectBySearch(ArrayList<String> pull)
+	public List<userDTO> selectBySearch(HashMap<String, String> pull)
 	{
-		HashMap<String, String> hmap = new HashMap<String, String>();
-		List<userDTO> userList = new ArrayList<>();
+		//SQL文作成
+				//StringBuilder使用
+				int index = 1;
+				StringBuilder sqlSearch = new StringBuilder();
+				//Initial SQL query
+				sqlSearch.append(sql);
+				sqlSearch.append(" WHERE 'X' = 'X'");
+
+				//TRY-CATCH文　try 開始
+				try {
+				//for each文でHashMap内のkeyを取り出していく
+				for(String key : pull.keySet())
+				{//START for文
+					//値がnullで無ければSQL文にappendして足していく
+					if(pull.get(key) != null || pull.get(key) != "")
+					{
+						sqlSearch.append("AND " + key + " = ?");
+						//PreparedStatementのsetIntで該当するid番号を設定していく
+						stmt.setInt(index, Integer.parseInt(pull.get(key)));
+						//ループするためinteger型変数indexをインクレメントしていく
+						index++;
+					}
+				}//END FOR文
+
+					//Connection作成
+					Connection con = DBManager.getConnection();
+					//ConnectionのprepareStatement()でSQL文をセット、StringBuilderの為 toString()メソッドでStringに変更
+					this.stmt = con.prepareStatement(sql.toString());
+					//ResultSet作成、SQL文を実行
+					ResultSet rs = stmt.executeQuery();
+					//<userDTO>型のリストを作成：userSearchList
+					List<userDTO> userSearchList = new ArrayList<userDTO>();
+
+					//該当するプロフィールを全件表示する
+					while(rs.next())
+					{
+						
+					}
+
+
+				} 
+				catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
 
 		return userList;
 	}
