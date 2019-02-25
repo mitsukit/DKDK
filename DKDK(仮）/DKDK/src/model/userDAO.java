@@ -136,19 +136,19 @@ public class userDAO {
 				user.setUserId(rs.getInt("user_id"));
 				user.setPassword(rs.getString("user_pass"));
 				user.setName(rs.getString("user_nickname"));
-				user.setAreaId(rs.getString("address"));
-				user.setIncome(rs.getString("income"));
-				user.setEducationId(rs.getString("education"));
-				user.setGenderId(rs.getString("gender"));
-				user.setAge(rs.getString("age"));
-				user.setHeight(rs.getString("height"));
-				user.setBody(rs.getString("body"));
-				user.setJob(rs.getString("job"));
-				user.setHoliday(rs.getString("holiday"));
-				user.setCigar(rs.getString("smoking"));
-				user.setChild(rs.getString("children"));
+				user.adDto.setAddress(rs.getString("address"));
+				user.inDto.setIncome(rs.getString("income"));
+				user.edDto.setEducation(rs.getString("education"));
+				user.genDto.setGender(rs.getString("gender"));
+				user.ageDto.setAge(rs.getString("age"));
+				user.heiDto.setHeight(rs.getString("height"));
+				user.bodyDto.setBody(rs.getString("body"));
+				user.jobDto.setJob(rs.getString("job"));
+				user.holDto.setHoliday(rs.getString("holiday"));
+				user.smoDto.setSmoking(rs.getString("smoking"));
+				user.chiDto.setChildren(rs.getString("children"));
 				//user.setFree(rs.getString("user_free"));
-				user.setPicName(rs.getString("pic_name"));
+				user.picDto.setPicName(rs.getString("pic_name"));
 				userAllList.add(user);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
