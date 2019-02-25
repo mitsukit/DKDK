@@ -133,7 +133,7 @@ public class userDAO {
 
 
 	//IDを引数に、一件分検索
-	public userDTO selectById(int userId)
+	public  userDTO selectById(int userId)
 			throws SQLException, ClassNotFoundException, NumberFormatException {
 
 		String sql = "SELECT * FROM user_table INNER JOIN picture ON user_table.user_id = picture.id"

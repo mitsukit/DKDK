@@ -18,6 +18,7 @@ import model.userDTO;
 @WebServlet(name="login", urlPatterns={"/login"})
 public class update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	List<userDTO> userList;
 
 
 
@@ -54,7 +55,7 @@ public class update extends HttpServlet {
 		try {
 
 			userDAO userDao = new userDAO(null);
-			List<userDTO> userList = userDao.selectById(Integer.parseInt(userId));
+			userList.add(userDao.selectById(Integer.parseInt(userId)));
 
 		if(userList.isEmpty()) {
 			 error = "IDが見つかりません。";
