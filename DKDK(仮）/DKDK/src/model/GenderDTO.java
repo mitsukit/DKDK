@@ -20,7 +20,7 @@ public class GenderDTO
 		return this.gender;
 	}
 
-	public void setAddress(String ad)
+	public void setGender(String ad)
 	{
 		this.gender = ad;
 	}

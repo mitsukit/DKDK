@@ -30,6 +30,7 @@ public class userDTO{
 	HolidayDTO holDto;
 	SmokingDTO smoDto;
 	ChildrenDTO chiDto;
+	PictureDTO picDto;
 
 	public userDTO() {
 	}
@@ -41,23 +42,23 @@ public class userDTO{
 	 * 注意：引数に入れる順番を守る
 	 */
 	public userDTO(int userId,String password,String name,String address,
-				   String income,int educationId,int genderId,int ageId,int heightId,int bodyId,
-				   int jobId,int holidayId,int smokingId,int childrenId,int picId) {
+				   String income,String education,String gender,String age,String height,String body,
+				   String job,String holiday,String smoking,String children,String pic) {
 		this.userId = userId;
 		this.password = password;
 		this.name = name;
 		adDto.setAddress(address);
-		inDto.setIncome(income); //==============================================================================
-		this.education_id = educationId;
-		this.gender_id = genderId;
-		this.age_id = ageId;
-		this.height_id = heightId;
-		this.body_id = bodyId;
-		this.job_id = jobId;
-		this.holiday_id = holidayId;
-		this.smoking_id = smokingId;
-		this.children_id = childrenId;
-		this.pic_id = picId;
+		inDto.setIncome(income); 
+		edDto.setEducation(education); 
+		genDto.setGender(gender);
+		ageDto.setAge(age);
+		heiDto.setHeight(height);
+		bodyDto.setBody(body);
+		jobDto.setJob(job);
+		holDto.setHoliday(holiday);
+		smoDto.setSmoking(smoking);
+		chiDto.setChildren(children);
+		picDto.setPicName(pic);
 		//this.free = free;
 	}
 
